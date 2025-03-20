@@ -3,37 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>System Issues Tree</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Self Checking</title>
+    <style>
+        /* General page styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fa; /* Light grayish-blue background */
+            color: #333; /* Dark gray text */
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50; /* Dark blue-gray for title */
+            margin-bottom: 30px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        /* Tree structure styling */
+        ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        #tree > li {
+            background-color: #ffffff; /* White background for top-level items */
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .nested {
+            display: none;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* Caret styling */
+        .caret {
+            cursor: pointer;
+            font-weight: bold;
+            color: #2c3e50; /* Dark blue-gray for headings */
+            padding: 5px 10px;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+
+        .caret:hover {
+            background-color: #ecf0f1; /* Light gray hover effect */
+            border-radius: 4px;
+        }
+
+        .caret::before {
+            content: "\25B6"; /* Right triangle */
+            color: #3498db; /* Blue for caret */
+            display: inline-block;
+            margin-right: 8px;
+            transition: transform 0.3s;
+        }
+
+        .caret-down::before {
+            content: "\25BC"; /* Down triangle */
+            transform: rotate(0deg); /* Ensures smooth transition */
+        }
+
+        /* Nested item styling */
+        .nested li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee; /* Subtle divider */
+        }
+
+        .nested li:last-child {
+            border-bottom: none; /* Remove divider from last item */
+        }
+
+        /* Description and image styling */
+        .description {
+            margin: 10px 0 10px 20px;
+            color: #7f8c8d; /* Gray for descriptions */
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .issue-image {
+            max-width: 200px;
+            height: auto;
+            margin: 10px 0 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); /* Subtle image shadow */
+        }
+
+        /* Highlight issue items */
+        .nested > li > span.caret {
+            color: #e74c3c; /* Red for issue titles */
+        }
+    </style>
 </head>
 <body>
-    <div class="tree">
-        <ul>
-            <li>
-                <span class="caret">System 1</span>
-                <ul class="nested">
-                    <li><span class="caret">Issue 1</span>
-                        <ul class="nested">
-                            <li>Details of Issue 1</li>
-                        </ul>
-                    </li>
-                    <li><span class="caret">Issue 2</span>
-                        <ul class="nested">
-                            <li>Details of Issue 2</li>
-                                       </ul>
-            </li>
-            <li>
-                <span class="caret">System 2</span>
-                <ul class="nested">
-                    <li><span class="caret">Issue 1</span>
-                        <ul class="nested">
-                            <li>Details of Issue 1</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <script src="script.js"></script>
+    <h1>Self Checking</h1>
+    <ul id="tree">
+        <li>
+            <span class="caret">Centric PLM</span>
+            <ul class="nested">
+                <li>
+                    <span class="caret">Issue1</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                        <li class="description">This is a description for Issue1 under Centric PLM.</li>
+                        <li><img src="https://via.placeholder.com/150" alt="Issue1 Image" class="issue-image"></li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue2</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                        <li class="description">This is a description for Issue2 under Centric PLM.</li>
+                        <li><img src="https://via.placeholder.com/150" alt="Issue2 Image" class="issue-image"></li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue3</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue4</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="caret">Costing</span>
+            <ul class="nested">
+                <li>
+                    <span class="caret">Issue1</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue2</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue3</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue4</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="caret">SMEE</span>
+            <ul class="nested">
+                <li>
+                    <span class="caret">Issue1</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue2</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue3</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue4</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="caret">GIS BOOKING</span>
+            <ul class="nested">
+                <li>
+                    <span class="caret">Issue1</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue2</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue3</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue4</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="caret">OTRF</span>
+            <ul class="nested">
+                <li>
+                    <span class="caret">Issue1</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue2</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue3</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue4</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="caret">Others</span>
+            <ul class="nested">
+                <li>
+                    <span class="caret">Issue1</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue2</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue3</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+                <li>
+                    <span class="caret">Issue4</span>
+                    <ul class="nested">
+                        <li>Item1</li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var toggler = document.getElementsByClassName("caret");
+            for (var i = 0; i < toggler.length; i++) {
+                toggler[i].addEventListener("click", function() {
+                    this.parentElement.querySelector(".nested").classList.toggle("active");
+                    this.classList.toggle("caret-down");
+                });
+            }
+        });
+    </script>
 </body>
 </html>
